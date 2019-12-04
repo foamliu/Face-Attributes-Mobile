@@ -8,17 +8,17 @@ from config import device
 class FaceAttributeModel(nn.Module):
     def __init__(self):
         super(FaceAttributeModel, self).__init__()
-        resnet = models.resnet50(pretrained=True)
+        model = models.mobilenet_v2(pretrained=True)
         # Remove linear and pool layers (since we're not doing classification)
-        modules = list(resnet.children())[:-1]
+        modules = list(model.children())[:-1]
         self.resnet = nn.Sequential(*modules)
-        self.fc = nn.Linear(2048, 17)
+        self.fc = nn.Linear(1280, 17)
         self.sigmoid = nn.Sigmoid()
         self.softmax = nn.Softmax(dim=-1)
 
     def forward(self, images):
-        x = self.resnet(images)  # [N, 2048, 1, 1]
-        x = x.view(-1, 2048)  # [N, 2048]
+        x = self.resnet(images)  # [N, 1280, 1, 1]
+        x = x.view(-1, 1280)  # [N, 1280]
         x = self.fc(x)
         reg = self.sigmoid(x[:, :5])  # [N, 8]
         expression = self.softmax(x[:, 5:8])
