@@ -35,14 +35,17 @@ if __name__ == "__main__":
     samples = []
     for item in tqdm(file_names):
         filename = item['filename']
-        attr = get_attr(filename)
+        try:
+            attr = get_attr(filename)
 
-        if len(attr) > 0:
-            class_id = item['class_id']
-            sub = item['subject']
+            if len(attr) > 0:
+                class_id = item['class_id']
+                sub = item['subject']
 
-            samples.append(
-                {'class_id': class_id, 'subject': sub, 'full_path': filename, 'attr': attr})
+                samples.append(
+                    {'class_id': class_id, 'subject': sub, 'full_path': filename, 'attr': attr})
+        except Exception as err:
+            print(err)
 
     print('num_samples: ' + str(len(samples)))
 
