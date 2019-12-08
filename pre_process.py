@@ -3,7 +3,7 @@ import pickle
 import cv2 as cv
 from tqdm import tqdm
 
-from config import pickle_file
+from config import pickle_file, IMG_DIR
 from retinaface.detector import detect_faces
 
 
@@ -37,6 +37,7 @@ if __name__ == "__main__":
         bboxes, landmarks = detect_faces(img)
         idx = select_significant_face(bboxes)
         bbox = bboxes[idx]
+        print(img.shape)
         print(item)
         print(bbox)
         break

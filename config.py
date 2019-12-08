@@ -20,7 +20,7 @@ num_samples = 382464
 train_ratio = 0.9
 num_train = int(num_samples * train_ratio)
 DATA_DIR = 'data'
-IMG_DIR = 'data/CASIA-WebFace'
+IMG_DIR = 'data/images'
 pickle_file = DATA_DIR + '/' + 'CASIA-WebFace.pkl'
 
 # name_list = ['age', 'pitch', 'roll', 'yaw', 'beauty', 'expression', 'face_prob', 'face_shape', 'face_type',
