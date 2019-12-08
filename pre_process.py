@@ -32,13 +32,13 @@ if __name__ == "__main__":
 
     samples = []
     for item in tqdm(items):
-        filename = item['full_path']
-        img = cv.imread(filename)
+        full_path = item['full_path']
+        img = cv.imread(full_path)
         bboxes, landmarks = detect_faces(img)
         idx = select_significant_face(bboxes)
         b = bboxes[idx]
         img = img[int(b[1]):int(b[3]), int(b[0]):int(b[2]), :]
-        filename = filename.replace('data/CASIA-WebFace/', '').replace('/', '_')
+        filename = full_path.replace('data/CASIA-WebFace/', '').replace('/', '_')
         print(filename)
         cv.imwrite('test.jpg', img)
         print(img.shape)
