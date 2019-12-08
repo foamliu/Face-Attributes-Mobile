@@ -25,6 +25,7 @@ if __name__ == "__main__":
             sample['landmarks'] = landmarks
             samples.append(sample)
 
+    print('num_samples: ' + str(len(samples)))
     print('saving {}...'.format(pickle_file_landmarks))
     with open(pickle_file_landmarks, 'wb') as file:
         save = {
