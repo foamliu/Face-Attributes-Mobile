@@ -44,8 +44,13 @@ if __name__ == "__main__":
             bbox = bboxes[idx]
             img = crop_image(img, bbox)
             filename = full_path.replace('data/CASIA-WebFace/', '').replace('/', '_')
+
+            item['filename'] = filename
+            samples.append(item)
+
             filename = os.path.join(IMG_DIR, filename)
             cv.imwrite(filename, img)
+
         except Exception as err:
             print(err)
 
