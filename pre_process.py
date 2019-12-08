@@ -37,7 +37,7 @@ if __name__ == "__main__":
         bboxes, landmarks = detect_faces(img)
         idx = select_significant_face(bboxes)
         b = bboxes[idx]
-        img = img[b[1]:b[3], b[0]:b[2], :]
+        img = img[int(b[1]):int(b[3]), int(b[0]):int(b[2]), :]
         cv.imwrite('test.jpg', img)
         print(img.shape)
         print(item)
