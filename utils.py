@@ -3,6 +3,8 @@ import logging
 
 import torch
 
+from config import expression_dict, face_shape_dict, face_type_dict, gender_dict, glasses_dict, race_dict
+
 
 def clip_gradient(optimizer, grad_clip):
     """
@@ -120,14 +122,6 @@ def get_logger():
     return logger
 
 
-expression_dict = {0: 'none', 1: 'smile', 2: 'laugh'}
-face_shape_dict = {0: 'square', 1: 'oval', 2: 'heart', 3: 'round', 4: 'triangle'}
-face_type_dict = {0: 'human', 1: 'cartoon'}
-gender_dict = {0: 'female', 1: 'male'}
-glasses_dict = {0: 'none', 1: 'sun', 2: 'common'}
-race_dict = {0: 'yellow', 1: 'white', 2: 'black', 3: 'arabs'}
-
-
 def idx2name(idx, tag):
     name = None
     if tag == 'expression':
@@ -169,3 +163,9 @@ def crop_image(img, bbox):
     # print('x1:{} y1:{} w:{} h:{}'.format(x1, y1, w, h))
     crop_img = img[y1:y1 + h, x1:x1 + w]
     return crop_img
+
+
+def ensure_folder(folder):
+    import os
+    if not os.path.isdir(folder):
+        os.mkdir(folder)

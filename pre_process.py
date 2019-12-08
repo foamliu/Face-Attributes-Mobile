@@ -1,3 +1,4 @@
+import os
 import pickle
 
 import cv2 as cv
@@ -5,6 +6,7 @@ from tqdm import tqdm
 
 from config import pickle_file, IMG_DIR
 from retinaface.detector import detect_faces
+from utils import ensure_folder
 
 
 def select_significant_face(bboxes):
@@ -23,6 +25,8 @@ def select_significant_face(bboxes):
 
 
 if __name__ == "__main__":
+    ensure_folder(IMG_DIR)
+
     print('loading {}...'.format(pickle_file))
     with open(pickle_file, 'rb') as file:
         data = pickle.load(file)
@@ -37,10 +41,7 @@ if __name__ == "__main__":
         bboxes, landmarks = detect_faces(img)
         idx = select_significant_face(bboxes)
         b = bboxes[idx]
-        img = img[int(b[1]):int(b[3]), int(b[0]):int(b[2]), :]
+        img = img[int(b[1]):int(b[3]), int(b[0]):int(b[2])]
         filename = full_path.replace('data/CASIA-WebFace/', '').replace('/', '_')
-        print(filename)
-        cv.imwrite('test.jpg', img)
-        print(img.shape)
-        print(item)
-        break
+        filename = os.path.join(IMG_DIR, filename)
+        cv.imwrite(filename, img)

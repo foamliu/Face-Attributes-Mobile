@@ -26,3 +26,10 @@ pickle_file = DATA_DIR + '/' + 'CASIA-WebFace.pkl'
 # name_list = ['age', 'pitch', 'roll', 'yaw', 'beauty', 'expression', 'face_prob', 'face_shape', 'face_type',
 #              'gender', 'glasses', 'race']
 name_list = ['beauty']
+
+expression_dict = {0: 'none', 1: 'smile', 2: 'laugh'}
+face_shape_dict = {0: 'square', 1: 'oval', 2: 'heart', 3: 'round', 4: 'triangle'}
+face_type_dict = {0: 'human', 1: 'cartoon'}
+gender_dict = {0: 'female', 1: 'male'}
+glasses_dict = {0: 'none', 1: 'sun', 2: 'common'}
+race_dict = {0: 'yellow', 1: 'white', 2: 'black', 3: 'arabs'}
