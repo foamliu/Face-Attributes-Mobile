@@ -4,7 +4,7 @@ import pickle
 import cv2 as cv
 from tqdm import tqdm
 
-from config import pickle_file, IMG_DIR
+from config import IMG_DIR, pickle_file, pickle_file_aligned
 from retinaface.detector import detect_faces
 from utils import ensure_folder, crop_image
 
@@ -48,3 +48,11 @@ if __name__ == "__main__":
             cv.imwrite(filename, img)
         except Exception as err:
             print(err)
+
+    print('num_samples: ' + str(len(samples)))
+
+    with open(pickle_file_aligned, 'wb') as file:
+        save = {
+            'samples': samples
+        }
+        pickle.dump(save, file, pickle.HIGHEST_PROTOCOL)

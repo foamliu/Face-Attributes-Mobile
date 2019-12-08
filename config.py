@@ -22,6 +22,7 @@ num_train = int(num_samples * train_ratio)
 DATA_DIR = 'data'
 IMG_DIR = 'data/images'
 pickle_file = DATA_DIR + '/' + 'CASIA-WebFace.pkl'
+pickle_file_aligned = DATA_DIR + '/' + 'CASIA-WebFace-aligned.pkl'
 
 # name_list = ['age', 'pitch', 'roll', 'yaw', 'beauty', 'expression', 'face_prob', 'face_shape', 'face_type',
 #              'gender', 'glasses', 'race']
