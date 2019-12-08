@@ -36,8 +36,9 @@ if __name__ == "__main__":
         img = cv.imread(filename)
         bboxes, landmarks = detect_faces(img)
         idx = select_significant_face(bboxes)
-        bbox = bboxes[idx]
+        b = bboxes[idx]
+        img = img[b[1]:b[3], b[0]:b[2]]
+        cv.imwrite('test.jpg', img)
         print(img.shape)
         print(item)
-        print(bbox)
         break
