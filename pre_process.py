@@ -38,6 +38,8 @@ if __name__ == "__main__":
         idx = select_significant_face(bboxes)
         b = bboxes[idx]
         img = img[int(b[1]):int(b[3]), int(b[0]):int(b[2]), :]
+        filename = filename.replace('data/CASIA-WebFace/', '').replace('/', '_')
+        print(filename)
         cv.imwrite('test.jpg', img)
         print(img.shape)
         print(item)
