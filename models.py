@@ -29,6 +29,6 @@ class FaceAttributeModel(nn.Module):
 
 
 if __name__ == "__main__":
-    model = FaceAttributeModel().to(device)
+    model = FaceAttributeModel()
     scope(model, input_size=(3, 224, 224))
 
