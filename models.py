@@ -12,12 +12,14 @@ class FaceAttributeModel(nn.Module):
         # Remove linear and pool layers (since we're not doing classification)
         modules = list(model.children())[:-1]
         self.resnet = nn.Sequential(*modules)
+        self.pool = nn.AvgPool2d(kernel_size=7)
         self.fc = nn.Linear(1280, 17)
         self.sigmoid = nn.Sigmoid()
         self.softmax = nn.Softmax(dim=-1)
 
     def forward(self, images):
         x = self.resnet(images)  # [N, 1280, 1, 1]
+        x = self.pool(x)
         x = x.view(-1, 1280)  # [N, 1280]
         x = self.fc(x)
         reg = self.sigmoid(x[:, :5])  # [N, 8]
