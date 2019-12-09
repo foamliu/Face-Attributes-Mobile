@@ -1,5 +1,5 @@
 from torch import nn
-from torchsummary import summary
+from torchscope import scope
 from torchvision import models
 
 from config import device
@@ -30,5 +30,5 @@ class FaceAttributeModel(nn.Module):
 
 if __name__ == "__main__":
     model = FaceAttributeModel().to(device)
-    summary(model, input_size=(3, 224, 224))
+    scope(model, input_size=(3, 224, 224))
 
