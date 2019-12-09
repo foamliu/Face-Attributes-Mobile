@@ -16,7 +16,7 @@ checkpoint = None  # path to checkpoint, None if none
 loss_ratio = 100
 
 # Data parameters
-num_samples = 382464
+num_samples = 382401
 train_ratio = 0.9
 num_train = int(num_samples * train_ratio)
 DATA_DIR = 'data'
