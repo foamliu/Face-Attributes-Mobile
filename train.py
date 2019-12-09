@@ -1,7 +1,7 @@
 import numpy as np
 import torch
-from tensorboardX import SummaryWriter
 from torch import nn
+from torch.utils.tensorboard import SummaryWriter
 
 from config import device, grad_clip, print_freq, loss_ratio
 from data_gen import FaceAttributesDataset
@@ -70,7 +70,7 @@ def train_net(args):
                            epoch=epoch,
                            logger=logger)
 
-        writer.add_scalar('Train_Loss', train_loss, epoch)
+        writer.add_scalar('model/train_Loss', train_loss, epoch)
 
         # One epoch's validation
         valid_loss = valid(valid_loader=valid_loader,
@@ -78,7 +78,7 @@ def train_net(args):
                            criterions=(L1Loss, CrossEntropyLoss),
                            logger=logger)
 
-        writer.add_scalar('Valid_Loss', valid_loss, epoch)
+        writer.add_scalar('model/valid_Loss', valid_loss, epoch)
 
         # Check if there was an improvement
         is_best = valid_loss < best_loss
