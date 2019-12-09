@@ -1,3 +1,4 @@
+import os
 import pickle
 
 import cv2 as cv
@@ -5,8 +6,8 @@ import numpy as np
 from torch.utils.data import Dataset
 from torchvision import transforms
 
-from config import im_size, pickle_file_aligned, num_train
-from utils import crop_image, name2idx
+from config import im_size, pickle_file_aligned, num_train, IMG_DIR
+from utils import name2idx
 
 # Data augmentation and normalization for training
 # Just normalization for validation
@@ -38,10 +39,12 @@ class FaceAttributesDataset(Dataset):
 
     def __getitem__(self, i):
         sample = self.samples[i]
-        full_path = sample['full_path']
-        bbox = sample['bboxes'][0]
+        filename = sample['filename']
+        full_path = os.path.join(IMG_DIR, filename)
+        # full_path = sample['filename']
+        # bbox = sample['bboxes'][0]
         img = cv.imread(full_path)
-        img = crop_image(img, bbox)
+        # img = crop_image(img, bbox)
         img = cv.resize(img, (im_size, im_size))
 
         # img aug
