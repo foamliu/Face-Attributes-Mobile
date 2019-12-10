@@ -6,7 +6,7 @@ import cv2 as cv
 import torch
 from torchvision import transforms
 
-from config import device, im_size, pickle_file_landmarks, train_ratio
+from config import device, im_size, pickle_file_aligned, train_ratio
 from data_gen import data_transforms
 from utils import crop_image, idx2name
 
@@ -24,7 +24,7 @@ def save_images(full_path, i, bbox):
 
 
 if __name__ == "__main__":
-    with open(pickle_file_landmarks, 'rb') as file:
+    with open(pickle_file_aligned, 'rb') as file:
         data = pickle.load(file)
 
     samples = data['samples']
