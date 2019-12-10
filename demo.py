@@ -1,4 +1,5 @@
 import json
+import os
 import pickle
 import random
 
@@ -6,18 +7,19 @@ import cv2 as cv
 import torch
 from torchvision import transforms
 
-from config import device, im_size, pickle_file_aligned, train_ratio
+from config import device, im_size, pickle_file_aligned, train_ratio, IMG_DIR
 from data_gen import data_transforms
-from utils import crop_image, idx2name
+from utils import idx2name
 
 
-def save_images(full_path, i, bbox):
+def save_images(full_path, filename, i):
     raw = cv.imread(full_path)
     resized = cv.resize(raw, (im_size, im_size))
     filename = 'images/{}_raw.jpg'.format(i)
     cv.imwrite(filename, resized)
 
-    img = crop_image(raw, bbox)
+    filename = os.path.join(IMG_DIR, filename)
+    img = cv.imread(filename)
     img = cv.resize(img, (im_size, im_size))
     filename = 'images/{}_img.jpg'.format(i)
     cv.imwrite(filename, img)
@@ -41,13 +43,17 @@ if __name__ == "__main__":
     sample_preds = []
 
     for i, sample in enumerate(samples):
-        full_path = sample['full_path']
-        bbox = sample['bboxes'][0]
-        print(full_path)
-        save_images(full_path, i, bbox)
+        filename = sample['filename']
+        print(filename)
+        save_images(full_path, filename, i)
 
+        full_path = os.path.join(IMG_DIR, filename)
+        # full_path = sample['filename']
+        # bbox = sample['bboxes'][0]
         img = cv.imread(full_path)
-        img = crop_image(img, bbox)
+        # img = crop_image(img, bbox)
+        img = cv.resize(img, (im_size, im_size))
+
         img = cv.resize(img, (im_size, im_size))
         img = img[..., ::-1]  # RGB
         img = transforms.ToPILImage()(img)
