@@ -2,8 +2,6 @@ from torch import nn
 from torchscope import scope
 from torchvision import models
 
-from config import device
-
 
 class FaceAttributeModel(nn.Module):
     def __init__(self):
@@ -33,4 +31,3 @@ class FaceAttributeModel(nn.Module):
 if __name__ == "__main__":
     model = FaceAttributeModel()
     scope(model, input_size=(3, 224, 224))
-
