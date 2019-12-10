@@ -2,6 +2,10 @@
 
 Deep Face Attributes.
 
+## Features
+1. Estimate Gender, Age, Euler angles, Beauty, Expression, Face shape, Face type and Glasses with a single image.
+2. Lightweight: Params size (MB): 2.14, FLOPs size (GB): 0.32, Total Size (MB): 9.18.
+
 
 ## DataSet
 
@@ -56,7 +60,8 @@ Roll:
 ![image](https://github.com/foamliu/Face-Attributes-v2/raw/master/images/race_dist.png)
 
 ## Dependencies
-- PyTorch 1.0.0
+- Python 3.6.8
+- PyTorch 1.3.0
 
 ## Usage
 
