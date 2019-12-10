@@ -15,14 +15,11 @@ from utils import idx2name
 def save_images(full_path, filename, i):
     raw = cv.imread(full_path)
     resized = cv.resize(raw, (im_size, im_size))
-    filename = 'images/{}_raw.jpg'.format(i)
-    cv.imwrite(filename, resized)
+    cv.imwrite('images/{}_raw.jpg'.format(i), resized)
 
-    filename = os.path.join(IMG_DIR, filename)
-    img = cv.imread(filename)
+    img = cv.imread(os.path.join(IMG_DIR, filename))
     img = cv.resize(img, (im_size, im_size))
-    filename = 'images/{}_img.jpg'.format(i)
-    cv.imwrite(filename, img)
+    cv.imwrite('images/{}_img.jpg'.format(i), img)
 
 
 if __name__ == "__main__":
@@ -43,6 +40,7 @@ if __name__ == "__main__":
     sample_preds = []
 
     for i, sample in enumerate(samples):
+        full_path = sample['full_path']
         filename = sample['filename']
         print(filename)
         save_images(full_path, filename, i)
