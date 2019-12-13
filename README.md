@@ -1,6 +1,6 @@
-# Face-Attributes-v2
+# Face Attributes Mobile
 
-Deep Face Attributes.
+Regress Face Attributes with MobileNetV2.
 
 ## Features
 1. Estimate Gender, Age, Euler angles, Beauty, Expression, Face shape, Face type and Glasses with a single image.
